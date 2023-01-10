@@ -43,7 +43,9 @@ def index():
 
 @app.route('/participant/<regno>/', methods=['POST', 'GET'])
 def attendance(regno):
-    if 'username' in session:
+    # if 'username' in session:
+    x = 1
+    if x == 1:
         conn2 = sqlite3.connect('data.db')
         if request.method == "GET":
             conn2 = sqlite3.connect('data.db')
@@ -53,7 +55,7 @@ def attendance(regno):
             print(rec)
             return render_template('correct.html', r=rec[0])
         elif request.method == "POST":
-            if request.form.get('action1') == 'val1':
+            if request.form.get('action1') == 'MARK ATTENDANCE':
                 query = "UPDATE participants SET attendance = 'PRESENT' where regno = '%s' " % regno
                 conn2.execute(query)
                 conn2.commit()
@@ -61,7 +63,7 @@ def attendance(regno):
                     "select * from participants where regno = '%s'" % regno)
                 rec = [i for i in rec]
                 return render_template('correct.html', r=rec[0])
-            elif request.form.get('action2') == 'val2':
+            elif request.form.get('action2') == 'MARK FOOD STATUS':
                 query = "UPDATE participants SET food_status = 'PRESENT' where regno = '%s' " % regno
                 conn2.execute(query)
                 conn2.commit()
@@ -84,4 +86,4 @@ def logout():
 app.secret_key = 'supersecret'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")
