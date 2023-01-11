@@ -9,7 +9,7 @@ import sqlite3
 app = Flask(__name__, static_folder='static')
 app.config['SECRET_KEY'] = '123456790'
 
-
+"""
 @app.route('/', methods=['POST', 'GET'])
 def index():
     conn = sqlite3.connect('data.db')
@@ -38,7 +38,7 @@ def index():
         if 'username' in session:
             if session['username'] == username:
                 return render_template("index.html")
-    return render_template('login.html')
+    return render_template('login.html')"""
 
 
 @app.route('/participant/<regno>/', methods=['POST', 'GET'])
@@ -77,9 +77,19 @@ def attendance(regno):
         return redirect(url_for('index'))
 
 
+@app.route('/', methods=['GET', 'POST'])
+def search():
+    if request.method == "GET":
+        return render_template("search.html")
+    if request.method == "POST":
+        data = request.form
+        regno = data['answer']
+        return redirect('/participant/'+regno)
+
+
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
+    # session.pop('username', None)
     return redirect(url_for('index'))
 
 
