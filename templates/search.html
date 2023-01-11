@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<nav class="navbar navbar-light navbar-expand-lg navigation-clean-button">
+    <div class="container"><a class="navbar-brand" href="">Linux Club</a><button data-bs-toggle="collapse"
+            class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
+                navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav me-auto">
+
+            </ul><a href="./logout"><button class="btn btn-primary" type="button">Logout</button></a><span
+                class="navbar-text actions"> </span>
+        </div>
+    </div>
+</nav>
+<section class="newsletter-subscribe">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Cyber Cosmos</h2>
+
+            <p class="text-center">Enter register number to search participant.</p>
+
+        </div>
+        <form class="d-flex justify-content-center flex-wrap" method="post" action="/submit-answer">
+            <div class="mb-3"><input class="form-control" type="text" name="answer" placeholder="Register Number" />
+            </div>
+            <div class="mb-3"><button class="btn btn-primary" type="submit">Submit</button></div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
